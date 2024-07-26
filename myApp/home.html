@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - Expense Tracker</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Expense Tracker</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'expense_list' %}">View Expenses</a></li>
+            <li><a href="{% url 'expense_new' %}">Add New Expense</a></li>
+            <li><a href="{% url 'income_list' %}">View Income</a></li>
+            <li><a href="{% url 'income_new' %}">Add New Income</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Recent Activities</h2>
+        <ul>
+            {% for expense in recent_expenses %}
+                <li>{{ expense.date }}: {{ expense.category }} - ${{ expense.amount }}</li>
+            {% endfor %}
+            {% for income in recent_incomes %}
+                <li>{{ income.date }}: {{ income.source }} - ${{ income.amount }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2024 Expense Tracker</p>
+    </footer>
+</body>
+</html>
+
